@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://dr1yvf4jp734f"]
+
+[ext_resource type="Script" path="res://Scripts/carro.cs" id="1_ib6bu"]
+[ext_resource type="Texture2D" uid="uid://c8hb5mu630hbj" path="res://icon.svg" id="1_pqu0h"]
+[ext_resource type="Script" path="res://Scripts/inputs.cs" id="4_qtc66"]
+
+[node name="main" type="Node2D"]
+
+[node name="carro" type="Node2D" parent="."]
+position = Vector2(198, 326)
+script = ExtResource("1_ib6bu")
+
+[node name="roda_esquerda" type="Sprite2D" parent="carro"]
+position = Vector2(0, -100)
+texture = ExtResource("1_pqu0h")
+
+[node name="roda_direita" type="Sprite2D" parent="carro"]
+position = Vector2(0, 100)
+texture = ExtResource("1_pqu0h")
+
+[node name="inputs" type="Node2D" parent="carro"]
+script = ExtResource("4_qtc66")
+
+[connection signal="Impulso" from="carro/inputs" to="carro" method="OnImpulso"]
