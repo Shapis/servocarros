@@ -18,7 +18,9 @@ texture = ExtResource("1_pqu0h")
 position = Vector2(0, 100)
 texture = ExtResource("1_pqu0h")
 
+[node name="roda_frontal" type="Sprite2D" parent="carro"]
+position = Vector2(250, 0)
+texture = ExtResource("1_pqu0h")
+
 [node name="inputs" type="Node2D" parent="carro"]
 script = ExtResource("4_qtc66")
-
-[connection signal="Impulso" from="carro/inputs" to="carro" method="OnImpulso"]

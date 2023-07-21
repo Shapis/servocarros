@@ -1,0 +1,17 @@
+/home/hpsilva/Documents/servocarros/.godot/mono/temp/bin/Debug/Servocarro.deps.json
+/home/hpsilva/Documents/servocarros/.godot/mono/temp/bin/Debug/Servocarro.runtimeconfig.json
+/home/hpsilva/Documents/servocarros/.godot/mono/temp/bin/Debug/Servocarro.dll
+/home/hpsilva/Documents/servocarros/.godot/mono/temp/bin/Debug/Servocarro.pdb
+/home/hpsilva/Documents/servocarros/.godot/mono/temp/bin/Debug/GodotSharp.dll
+/home/hpsilva/Documents/servocarros/.godot/mono/temp/bin/Debug/GodotSharpEditor.dll
+/home/hpsilva/Documents/servocarros/.godot/mono/temp/obj/Debug/Servocarro.csproj.AssemblyReference.cache
+/home/hpsilva/Documents/servocarros/.godot/mono/temp/obj/Debug/Servocarro.GeneratedMSBuildEditorConfig.editorconfig
+/home/hpsilva/Documents/servocarros/.godot/mono/temp/obj/Debug/Servocarro.AssemblyInfoInputs.cache
+/home/hpsilva/Documents/servocarros/.godot/mono/temp/obj/Debug/Servocarro.AssemblyInfo.cs
+/home/hpsilva/Documents/servocarros/.godot/mono/temp/obj/Debug/Servocarro.csproj.CoreCompileInputs.cache
+/home/hpsilva/Documents/servocarros/.godot/mono/temp/obj/Debug/Servocarro.csproj.CopyComplete
+/home/hpsilva/Documents/servocarros/.godot/mono/temp/obj/Debug/Servocarro.dll
+/home/hpsilva/Documents/servocarros/.godot/mono/temp/obj/Debug/refint/Servocarro.dll
+/home/hpsilva/Documents/servocarros/.godot/mono/temp/obj/Debug/Servocarro.pdb
+/home/hpsilva/Documents/servocarros/.godot/mono/temp/obj/Debug/Servocarro.genruntimeconfig.cache
+/home/hpsilva/Documents/servocarros/.godot/mono/temp/obj/Debug/ref/Servocarro.dll
