@@ -1,5 +1,4 @@
 res://main.tscn
 res://Node2D.cs
-res://Scripts/carro.cs
-res://Scripts/inputs.cs
-res://Scripts/roda.cs
+res://Scripts/Carro.cs
+res://Scripts/Inputs.cs

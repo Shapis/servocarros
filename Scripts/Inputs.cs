@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class inputs : Node2D
+public partial class Inputs : Node2D
 {
     [Signal]
     public delegate void ImpulsoEventHandler(int impulsoLeft, int impulsoRight);

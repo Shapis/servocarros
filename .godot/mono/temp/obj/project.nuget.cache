@@ -1,13 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "SEajsAO5XgeNwYuiyoP3DGUMK+557qvSkUZGfHj2BfsBnZreVYOwTwW+BOgLCqlQ4tqDV8LV3bnf+bxELUUHMA==",
+  "dgSpecHash": "qroeh0iLx6l1G4iAO9TBCpeH+1a+kHOqayf5qv7s5nlK52yRE9KGZ+Aoggve3J3IDumGvxvZ9VDgx62JFCx9SQ==",
   "success": true,
   "projectFilePath": "/home/hpsilva/Documents/servocarros/Servocarro.csproj",
   "expectedPackageFiles": [
     "/home/hpsilva/.nuget/packages/godot.sourcegenerators/4.1.1/godot.sourcegenerators.4.1.1.nupkg.sha512",
     "/home/hpsilva/.nuget/packages/godotsharp/4.1.1/godotsharp.4.1.1.nupkg.sha512",
     "/home/hpsilva/.nuget/packages/godotsharpeditor/4.1.1/godotsharpeditor.4.1.1.nupkg.sha512",
-    "/home/hpsilva/.nuget/packages/microsoft.netcore.app.ref/6.0.20/microsoft.netcore.app.ref.6.0.20.nupkg.sha512",
     "/home/hpsilva/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.20/microsoft.aspnetcore.app.ref.6.0.20.nupkg.sha512"
   ],
   "logs": []

@@ -1,9 +1,9 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1689907851
-icon.svg::CompressedTexture2D::7103638805152798895::1689895960::1689907037::1::::<><>::
-main.tscn::PackedScene::8407641231876139551::1689907038::0::1::::<><>::res://Scripts/carro.cs<>uid://c8hb5mu630hbj::::res://icon.svg<>res://Scripts/inputs.cs
-Node2D.cs::CSharpScript::-1::1689896029::0::1::::<><>::
-::res://Scripts/::1689904350
-carro.cs::CSharpScript::-1::1689905262::0::1::::<><>::
-inputs.cs::CSharpScript::-1::1689904581::0::1::::<><>::
-roda.cs::CSharpScript::-1::1689905194::0::1::::<><>::
+::res://::1690845969
+icon.svg::CompressedTexture2D::7103638805152798895::1690842042::1690842042::1::::<><>::
+main.tscn::PackedScene::8407641231876139551::1690845960::0::1::::<><>::res://Scripts/Carro.cs<>uid://c8hb5mu630hbj::::res://icon.svg<>res://Scripts/Inputs.cs
+Node2D.cs::CSharpScript::-1::1690842042::0::1::::<><>::
+::res://Scripts/::1690845892
+Carro.cs::CSharpScript::-1::1690845948::0::1::::<><>::
+Inputs.cs::CSharpScript::-1::1690845880::0::1::::<><>::
+Roda.cs::CSharpScript::-1::1690845892::0::1::::<><>::
