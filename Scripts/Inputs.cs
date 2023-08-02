@@ -28,6 +28,10 @@ public partial class Inputs : Node2D
         {
             _impulso.right = -1;
         }
+        if (Input.IsActionPressed("QUIT"))
+        {
+            GetTree().Quit();
+        }
         EmitSignal(SignalName.Impulso, _impulso.left, _impulso.right);
     }
 }

@@ -6,9 +6,12 @@
 
 [node name="main" type="Node2D"]
 
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.2, 0.2)
+
 [node name="carro" type="Node2D" parent="."]
-position = Vector2(198, 326)
 script = ExtResource("1_lrc4o")
+_velocidadeMaxima = 628.318
 
 [node name="roda_esquerda" type="Sprite2D" parent="carro"]
 position = Vector2(0, -100)
@@ -19,7 +22,7 @@ position = Vector2(0, 100)
 texture = ExtResource("1_pqu0h")
 
 [node name="roda_traseira" type="Sprite2D" parent="carro"]
-position = Vector2(-250, 0)
+position = Vector2(250, 0)
 texture = ExtResource("1_pqu0h")
 
 [node name="inputs" type="Node2D" parent="carro"]
