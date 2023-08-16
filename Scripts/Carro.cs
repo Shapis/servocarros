@@ -48,9 +48,14 @@ public partial class Carro : Node2D
 
     public override void _PhysicsProcess(double delta)
     {
+        if (Position.X >= 3500)
+        {
+            Position = new Vector2(-6500, Position.Y);
+        }
+        GD.Print(Position.X);
         _timeElapsed += delta;
-        _RodaDireita.RadialSpeed = -100f * 2f * (float)Math.PI;
-        _RodaEsquerda.RadialSpeed = 100f * 2f * (float)Math.PI;
+        // _RodaDireita.RadialSpeed = -100f * 2f * (float)Math.PI;
+        // _RodaEsquerda.RadialSpeed = 100f * 2f * (float)Math.PI;
         _RodaDireita.Update((float)delta, _pesoDoCarro, _velocidadeMaxima, _tempoDeAceleracao);
         _RodaEsquerda.Update((float)delta, _pesoDoCarro, _velocidadeMaxima, _tempoDeAceleracao);
         // _RodaEsquerda.Speed = 100f * (float)Math.PI * 2f;

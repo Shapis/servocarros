@@ -1,2 +1,6 @@
+RichTextLabel
+Control
+TextEdit
+CanvasLayer
 Camera2D
 Sprite2D
