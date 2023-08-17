@@ -1,8 +1,10 @@
 using Godot;
 using System;
 
-public partial class Carro : Node2D
+public partial class Carro : Node2D, ICarroDiagnosticos
 {
+    public event EventHandler<DiagnosticosInfo> OnCarroUpdateEvent;
+
     #region Inputs
     Roda _RodaEsquerda = new Roda();
     Roda _RodaDireita = new Roda();
@@ -48,11 +50,19 @@ public partial class Carro : Node2D
 
     public override void _PhysicsProcess(double delta)
     {
-        if (Position.X >= 3500)
+        if (Position.X >= 3600)
         {
-            Position = new Vector2(-6500, Position.Y);
+            Position = new Vector2(-6300, Position.Y);
         }
-        GD.Print(Position.X);
+        else if (Position.X <= -6500)
+        {
+            Position = new Vector2(3500, Position.Y);
+        }
+        else if (Position.Y <= -4000)
+        {
+            Position = new Vector2(Position.X, 4000);
+        }
+
         _timeElapsed += delta;
         // _RodaDireita.RadialSpeed = -100f * 2f * (float)Math.PI;
         // _RodaEsquerda.RadialSpeed = 100f * 2f * (float)Math.PI;
@@ -81,5 +91,18 @@ public partial class Carro : Node2D
 
         // GD.Print("Posicao: " + Position);
         // GD.Print(Position);
+        OnCarroUpdate(
+            this,
+            new DiagnosticosInfo
+            {
+                RodaEsquerdaRadial = _RodaEsquerda.RadialSpeed,
+                RodaDireitaRadial = _RodaDireita.RadialSpeed
+            }
+        );
+    }
+
+    public void OnCarroUpdate(object sender, DiagnosticosInfo e)
+    {
+        OnCarroUpdateEvent?.Invoke(this, e);
     }
 }

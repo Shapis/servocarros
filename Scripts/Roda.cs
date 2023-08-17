@@ -13,7 +13,16 @@ public class Roda
         float tempoDeAceleracao
     )
     {
-        RadialSpeed += delta * velocidadeMaxima * (1000f / tempoDeAceleracao) * Impulso;
+        if (Impulso == 1)
+        {
+            RadialSpeed +=
+                delta * (velocidadeMaxima - RadialSpeed) * (1000f / tempoDeAceleracao) * Impulso;
+        }
+        else
+        {
+            RadialSpeed +=
+                delta * (velocidadeMaxima + RadialSpeed) * (1000f / tempoDeAceleracao) * Impulso;
+        }
 
         if (RadialSpeed > velocidadeMaxima)
         {

@@ -13,6 +13,7 @@ zoom = Vector2(0.2, 0.2)
 [node name="carro" type="Node2D" parent="."]
 script = ExtResource("1_lrc4o")
 _velocidadeMaxima = 628.318
+_tempoDeAceleracao = 1000.0
 
 [node name="roda_esquerda" type="Sprite2D" parent="carro"]
 position = Vector2(0, -100)
