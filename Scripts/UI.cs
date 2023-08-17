@@ -6,10 +6,13 @@ public partial class UI : CanvasLayer, ICarroDiagnosticos
     [Export]
     private RichTextLabel[] _textos;
 
+    [Export]
+    private Carro _carro;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        GD.Print(GetTree());
+        _carro.OnCarroUpdateEvent += OnCarroUpdate;
         for (int i = 0; i < _textos.Length; i++)
         {
             // GD.Print(_textos.Length);
@@ -22,6 +25,6 @@ public partial class UI : CanvasLayer, ICarroDiagnosticos
 
     public void OnCarroUpdate(object sender, DiagnosticosInfo e)
     {
-        throw new NotImplementedException();
+        GD.Print(e.RodaDireitaRadial);
     }
 }
