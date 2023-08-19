@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dr1yvf4jp734f"]
+[gd_scene load_steps=7 format=3 uid="uid://dr1yvf4jp734f"]
 
 [ext_resource type="Script" path="res://Scripts/Carro.cs" id="1_lrc4o"]
 [ext_resource type="Texture2D" uid="uid://c8hb5mu630hbj" path="res://icon.svg" id="1_pqu0h"]
 [ext_resource type="Script" path="res://Scripts/Inputs.cs" id="3_yh5di"]
+[ext_resource type="PackedScene" uid="uid://cekkstadxpimf" path="res://addons/easy_charts/examples/scatter_chart/Control.tscn" id="4_2bnke"]
 [ext_resource type="Script" path="res://Scripts/UI.cs" id="4_8m211"]
+[ext_resource type="Script" path="res://Scripts/graph_rodas.gd" id="6_36uav"]
 
 [node name="main" type="Node2D"]
 
@@ -12,6 +14,7 @@ zoom = Vector2(0.2, 0.2)
 
 [node name="carro" type="Node2D" parent="."]
 script = ExtResource("1_lrc4o")
+_diametroDaRoda = 2.0
 _velocidadeMaxima = 628.318
 _tempoDeAceleracao = 1000.0
 
@@ -32,78 +35,131 @@ script = ExtResource("3_yh5di")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("_textos", "_carro")]
 script = ExtResource("4_8m211")
-_textos = [NodePath("texto1"), NodePath("texto2"), NodePath("texto3"), NodePath("texto4"), NodePath("texto5"), NodePath("texto6")]
+_textos = [NodePath("Label1"), NodePath("Label2"), NodePath("Label3"), NodePath("Label4"), NodePath("Label5"), NodePath("Label6"), NodePath("Label7"), NodePath("Label8"), NodePath("Label9"), NodePath("Label10"), NodePath("Label11"), NodePath("Label12"), NodePath("Label13"), NodePath("Label14"), NodePath("Label15"), NodePath("Label16"), NodePath("Label17"), NodePath("Label18")]
 _carro = NodePath("../carro")
 
-[node name="texto1" type="RichTextLabel" parent="CanvasLayer"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -3024.0
-offset_right = -2560.0
-offset_bottom = 73.0
-grow_horizontal = 0
-theme_override_colors/default_color = Color(0.262745, 0.694118, 0.788235, 1)
-theme_override_font_sizes/normal_font_size = 50
-text = "Rodas"
+[node name="Rodas" parent="CanvasLayer" node_paths=PackedStringArray("carro") instance=ExtResource("4_2bnke")]
+offset_left = 0.0
+offset_top = 930.0
+offset_right = -1360.0
+offset_bottom = 30.0
+script = ExtResource("6_36uav")
+carro = NodePath("../../carro")
 
-[node name="texto2" type="RichTextLabel" parent="CanvasLayer"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -5584.0
-offset_right = -5120.0
-offset_bottom = 73.0
-grow_horizontal = 0
-theme_override_colors/default_color = Color(0.262745, 0.694118, 0.788235, 1)
-theme_override_font_sizes/normal_font_size = 50
-text = "Rodas"
+[node name="Carro" parent="CanvasLayer" instance=ExtResource("4_2bnke")]
+offset_left = -80.0
+offset_top = -400.0
+offset_right = -1440.0
+offset_bottom = -1300.0
 
-[node name="texto3" type="RichTextLabel" parent="CanvasLayer"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -8144.0
-offset_right = -7680.0
-offset_bottom = 73.0
-grow_horizontal = 0
-theme_override_colors/default_color = Color(0.262745, 0.694118, 0.788235, 1)
-theme_override_font_sizes/normal_font_size = 50
-text = "Rodas"
+[node name="Label1" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 18.0
+theme_override_colors/font_color = Color(0, 0.792157, 0.941176, 1)
+theme_override_font_sizes/font_size = 50
 
-[node name="texto4" type="RichTextLabel" parent="CanvasLayer"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -464.0
-offset_bottom = 73.0
-grow_horizontal = 0
-theme_override_colors/default_color = Color(0.262745, 0.694118, 0.788235, 1)
-theme_override_font_sizes/normal_font_size = 50
-text = "Rodas"
+[node name="Label2" type="Label" parent="CanvasLayer"]
+offset_top = 1.0
+offset_right = 40.0
+offset_bottom = 19.0
+theme_override_colors/font_color = Color(0, 0.792157, 0.941176, 1)
+theme_override_font_sizes/font_size = 50
 
-[node name="texto5" type="RichTextLabel" parent="CanvasLayer"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -3024.0
-offset_right = -2560.0
-offset_bottom = 73.0
-grow_horizontal = 0
-theme_override_colors/default_color = Color(0.262745, 0.694118, 0.788235, 1)
-theme_override_font_sizes/normal_font_size = 50
-text = "Rodas"
+[node name="Label3" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 18.0
+theme_override_colors/font_color = Color(0, 0.792157, 0.941176, 1)
+theme_override_font_sizes/font_size = 50
 
-[node name="texto6" type="RichTextLabel" parent="CanvasLayer"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -5584.0
-offset_right = -5120.0
-offset_bottom = 73.0
-grow_horizontal = 0
-theme_override_colors/default_color = Color(0.262745, 0.694118, 0.788235, 1)
-theme_override_font_sizes/normal_font_size = 50
-text = "Rodas"
+[node name="Label4" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 18.0
+theme_override_colors/font_color = Color(0, 0.792157, 0.941176, 1)
+theme_override_font_sizes/font_size = 50
+
+[node name="Label5" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 18.0
+theme_override_colors/font_color = Color(0, 0.792157, 0.941176, 1)
+theme_override_font_sizes/font_size = 50
+
+[node name="Label6" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 18.0
+theme_override_colors/font_color = Color(0, 0.792157, 0.941176, 1)
+theme_override_font_sizes/font_size = 50
+
+[node name="Label7" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 18.0
+theme_override_colors/font_color = Color(0, 0.792157, 0.941176, 1)
+theme_override_font_sizes/font_size = 50
+
+[node name="Label8" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 57.0
+theme_override_colors/font_color = Color(0, 0.792157, 0.941176, 1)
+theme_override_font_sizes/font_size = 50
+
+[node name="Label9" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 57.0
+theme_override_colors/font_color = Color(0, 0.792157, 0.941176, 1)
+theme_override_font_sizes/font_size = 50
+
+[node name="Label10" type="Label" parent="CanvasLayer"]
+offset_top = 1.0
+offset_right = 40.0
+offset_bottom = 58.0
+theme_override_colors/font_color = Color(0, 0.792157, 0.941176, 1)
+theme_override_font_sizes/font_size = 50
+
+[node name="Label11" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 57.0
+theme_override_colors/font_color = Color(0, 0.792157, 0.941176, 1)
+theme_override_font_sizes/font_size = 50
+
+[node name="Label12" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 57.0
+theme_override_colors/font_color = Color(0, 0.792157, 0.941176, 1)
+theme_override_font_sizes/font_size = 50
+
+[node name="Label13" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 57.0
+theme_override_colors/font_color = Color(0, 0.792157, 0.941176, 1)
+theme_override_font_sizes/font_size = 50
+
+[node name="Label14" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 57.0
+theme_override_colors/font_color = Color(0, 0.792157, 0.941176, 1)
+theme_override_font_sizes/font_size = 50
+
+[node name="Label15" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 57.0
+theme_override_colors/font_color = Color(0, 0.792157, 0.941176, 1)
+theme_override_font_sizes/font_size = 50
+
+[node name="Label16" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 57.0
+theme_override_colors/font_color = Color(0, 0.792157, 0.941176, 1)
+theme_override_font_sizes/font_size = 50
+
+[node name="Label17" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 57.0
+theme_override_colors/font_color = Color(0, 0.792157, 0.941176, 1)
+theme_override_font_sizes/font_size = 50
+
+[node name="Label18" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 57.0
+theme_override_colors/font_color = Color(0, 0.792157, 0.941176, 1)
+theme_override_font_sizes/font_size = 50
 
 [connection signal="Impulso" from="carro/inputs" to="carro" method="OnImpulso"]

@@ -4,6 +4,7 @@ public class Roda
 {
     public int Impulso { get; set; }
     public float RadialSpeed { get; set; } = 0;
+    public float RadialAceleration { get; set; } = 0;
     public float Speed => RadialSpeed;
 
     public void Update(
@@ -24,13 +25,13 @@ public class Roda
                 delta * (velocidadeMaxima + RadialSpeed) * (1000f / tempoDeAceleracao) * Impulso;
         }
 
-        if (RadialSpeed > velocidadeMaxima)
-        {
-            RadialSpeed = velocidadeMaxima;
-        }
-        else if (RadialSpeed < -velocidadeMaxima)
-        {
-            RadialSpeed = -velocidadeMaxima;
-        }
+        // if (RadialSpeed > velocidadeMaxima)
+        // {
+        //     RadialSpeed = velocidadeMaxima;
+        // }
+        // else if (RadialSpeed < -velocidadeMaxima)
+        // {
+        //     RadialSpeed = -velocidadeMaxima;
+        // }
     }
 }

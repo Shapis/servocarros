@@ -25,6 +25,10 @@ window/size/mode=3
 
 project/assembly_name="Servocarro"
 
+[gui]
+
+theme/custom_font="res://Resources/Fonts/kenney_future_narrow.tres"
+
 [input]
 
 A={

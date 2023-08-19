@@ -21,7 +21,7 @@ public partial class Carro : Node2D, ICarroDiagnosticos
 
     #region Exports
     [Export]
-    private float _diameter = 1;
+    private float _diametroDaRoda = 1;
 
     [Export]
     private float _distanciaEntreRodas = 200;
@@ -40,6 +40,7 @@ public partial class Carro : Node2D, ICarroDiagnosticos
     private float _sumVelocity = 0;
     private float _diffVelocity = 0;
     private double _timeElapsed = 0;
+    private double _deltaTime = 0;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -50,19 +51,23 @@ public partial class Carro : Node2D, ICarroDiagnosticos
 
     public override void _PhysicsProcess(double delta)
     {
-        if (Position.X >= 3600)
+        if (Position.X >= 2600)
         {
-            Position = new Vector2(-6300, Position.Y);
+            Position = new Vector2(-6700, Position.Y);
         }
-        else if (Position.X <= -6500)
+        else if (Position.X <= -6700)
         {
-            Position = new Vector2(3500, Position.Y);
+            Position = new Vector2(2600, Position.Y);
         }
-        else if (Position.Y <= -4000)
+        else if (Position.Y <= -3850)
         {
-            Position = new Vector2(Position.X, 4000);
+            Position = new Vector2(Position.X, 4150);
         }
-
+        else if (Position.Y >= 4150)
+        {
+            Position = new Vector2(Position.X, -3850);
+        }
+        _deltaTime = delta;
         _timeElapsed += delta;
         // _RodaDireita.RadialSpeed = -100f * 2f * (float)Math.PI;
         // _RodaEsquerda.RadialSpeed = 100f * 2f * (float)Math.PI;
@@ -73,7 +78,7 @@ public partial class Carro : Node2D, ICarroDiagnosticos
 
         _sumVelocity = (_RodaEsquerda.RadialSpeed + _RodaDireita.RadialSpeed) / 2f;
         _diffVelocity =
-            (_RodaDireita.RadialSpeed - _RodaEsquerda.RadialSpeed) / _distanciaEntreRodas;
+            (_RodaDireita.RadialSpeed - _RodaEsquerda.RadialSpeed) / (_distanciaEntreRodas);
 
         Rotation -= _diffVelocity * (float)delta;
 
@@ -95,8 +100,14 @@ public partial class Carro : Node2D, ICarroDiagnosticos
             this,
             new DiagnosticosInfo
             {
-                RodaEsquerdaRadial = _RodaEsquerda.RadialSpeed,
-                RodaDireitaRadial = _RodaDireita.RadialSpeed
+                DiametroDaRoda = _diametroDaRoda,
+                DistanciaEntreRodas = _distanciaEntreRodas,
+                PesoDoCarro = _pesoDoCarro,
+                VelocidadeMaxima = _velocidadeMaxima,
+                VelocidadeAtual = _sumVelocity,
+                Posicao = Position,
+                VelocidadeRadial = new Vector2(_RodaEsquerda.RadialSpeed, _RodaDireita.RadialSpeed),
+                VelocidadeAngular = _diffVelocity,
             }
         );
     }

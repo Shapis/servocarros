@@ -1,5 +1,16 @@
+using Godot;
+
 public class DiagnosticosInfo
 {
-    public float RodaEsquerdaRadial { get; set; }
-    public float RodaDireitaRadial { get; set; }
+    public Vector2 Posicao { get; set; }
+    public Vector2 VelocidadeRadial { get; set; }
+    public Vector2I Impulso { get; set; }
+    public float DiametroDaRoda { get; set; }
+    public float DistanciaEntreRodas { get; set; }
+    public float VelocidadeMaxima { get; set; }
+    public float VelocidadeAtual { get; set; }
+    public float VelocidadeAngular { get; set; }
+    public float TempoDeAceleracao { get; set; }
+    public float PesoDoCarro { get; set; }
+    public float DeltaTime { get; set; }
 }
