@@ -41,6 +41,8 @@ public partial class Carro : Node2D, ICarroDiagnosticos
     private float _diffVelocity = 0;
     private double _timeElapsed = 0;
     private double _deltaTime = 0;
+    private float _rodaEsquerdaVelocidade = 0;
+    private float _rodaDireitaVelocidade = 0;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -51,21 +53,21 @@ public partial class Carro : Node2D, ICarroDiagnosticos
 
     public override void _PhysicsProcess(double delta)
     {
-        if (Position.X >= 2600)
+        if (Position.X >= 2350)
         {
             Position = new Vector2(-6700, Position.Y);
         }
         else if (Position.X <= -6700)
         {
-            Position = new Vector2(2600, Position.Y);
+            Position = new Vector2(2350, Position.Y);
         }
-        else if (Position.Y <= -3850)
+        else if (Position.Y <= -4000)
         {
-            Position = new Vector2(Position.X, 4150);
+            Position = new Vector2(Position.X, 800);
         }
-        else if (Position.Y >= 4150)
+        else if (Position.Y >= 800)
         {
-            Position = new Vector2(Position.X, -3850);
+            Position = new Vector2(Position.X, -4000);
         }
         _deltaTime = delta;
         _timeElapsed += delta;
@@ -73,6 +75,8 @@ public partial class Carro : Node2D, ICarroDiagnosticos
         // _RodaEsquerda.RadialSpeed = 100f * 2f * (float)Math.PI;
         _RodaDireita.Update((float)delta, _pesoDoCarro, _velocidadeMaxima, _tempoDeAceleracao);
         _RodaEsquerda.Update((float)delta, _pesoDoCarro, _velocidadeMaxima, _tempoDeAceleracao);
+        _rodaEsquerdaVelocidade = _RodaEsquerda.RadialSpeed;
+        _rodaDireitaVelocidade = _RodaDireita.RadialSpeed;
         // _RodaEsquerda.Speed = 100f * (float)Math.PI * 2f;
         // _RodaDireita.Speed = -100f * (float)Math.PI * 2f;
 

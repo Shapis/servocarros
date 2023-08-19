@@ -6,7 +6,6 @@ extends Control
 
 # This Chart will plot 3 different functions
 var f1: Function
-var f2: Function
 var f3: Function
 var f4: Function
 
@@ -20,9 +19,9 @@ func _ready():
 	cp.colors.ticks = Color("#283442")
 	cp.colors.text = Color.WHITE_SMOKE
 	cp.draw_bounding_box = false
-	cp.title = "Velocidade das Rodas"
+	cp.title = "Velocidade Angular"
 	cp.x_label = "milisegundos"
-	cp.y_label = "mm/s"
+	cp.y_label = "rad/s"
 	cp.x_scale = 5
 	cp.y_scale = 10
 	cp.interactive = true # false by default, it allows the chart to create a tooltip to show point values
@@ -37,12 +36,12 @@ func _ready():
 						# (if enabled thourgh ChartProperties) and on the Tooltip (if enabled).
 		{ color = Color.GREEN, marker = Function.Marker.CIRCLE }
 	)
-	f2 = Function.new([0], [0], "Roda Direita", { color = Color("#ff6384"), marker = Function.Marker.CROSS })
 	f3 = Function.new([0], [0], "limite superior", { color = Color("#161a1d"), marker = Function.Marker.CROSS })
 	f4 = Function.new([0], [0], "limite inferior", { color = Color("#161a1d"), marker = Function.Marker.CROSS })
+
 	
 	# Now let's plot our data
-	chart.plot([f1,f2,f3,f4], cp)
+	chart.plot([f1,f3,f4], cp)
 	
 	# Uncommenting this line will show how real time data plotting works
 	# set_process(false)
@@ -56,10 +55,9 @@ func _process(delta: float):
 		
 	
 	# we can use the `Function.add_point(x, y)` method to update a function
-	f1.add_point(tempoTotal, carro._rodaEsquerdaVelocidade)
-	f2.add_point(tempoTotal,  carro._rodaDireitaVelocidade)
-	f3.add_point(tempoTotal, carro._velocidadeMaxima*1.1)
-	f4.add_point(tempoTotal,  - carro._velocidadeMaxima*1.1)
+	f1.add_point(tempoTotal, carro._diffVelocity)
+	f3.add_point(tempoTotal, 1.05*(carro._velocidadeMaxima*2)/carro._distanciaEntreRodas)
+	f4.add_point(tempoTotal,  -1.05*(carro._velocidadeMaxima*2)/carro._distanciaEntreRodas)
 	chart.queue_redraw() # This will force the Chart to be updated
 
 

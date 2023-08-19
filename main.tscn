@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dr1yvf4jp734f"]
+[gd_scene load_steps=8 format=3 uid="uid://dr1yvf4jp734f"]
 
 [ext_resource type="Script" path="res://Scripts/Carro.cs" id="1_lrc4o"]
 [ext_resource type="Texture2D" uid="uid://c8hb5mu630hbj" path="res://icon.svg" id="1_pqu0h"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cekkstadxpimf" path="res://addons/easy_charts/examples/scatter_chart/Control.tscn" id="4_2bnke"]
 [ext_resource type="Script" path="res://Scripts/UI.cs" id="4_8m211"]
 [ext_resource type="Script" path="res://Scripts/graph_rodas.gd" id="6_36uav"]
+[ext_resource type="Script" path="res://Scripts/graph_carro_angular.gd" id="7_v0y26"]
 
 [node name="main" type="Node2D"]
 
@@ -16,7 +17,6 @@ zoom = Vector2(0.2, 0.2)
 script = ExtResource("1_lrc4o")
 _diametroDaRoda = 2.0
 _velocidadeMaxima = 628.318
-_tempoDeAceleracao = 1000.0
 
 [node name="roda_esquerda" type="Sprite2D" parent="carro"]
 position = Vector2(0, -100)
@@ -41,16 +41,18 @@ _carro = NodePath("../carro")
 [node name="Rodas" parent="CanvasLayer" node_paths=PackedStringArray("carro") instance=ExtResource("4_2bnke")]
 offset_left = 0.0
 offset_top = 930.0
-offset_right = -1360.0
+offset_right = -1285.0
 offset_bottom = 30.0
 script = ExtResource("6_36uav")
 carro = NodePath("../../carro")
 
-[node name="Carro" parent="CanvasLayer" instance=ExtResource("4_2bnke")]
-offset_left = -80.0
-offset_top = -400.0
-offset_right = -1440.0
-offset_bottom = -1300.0
+[node name="Carro" parent="CanvasLayer" node_paths=PackedStringArray("carro") instance=ExtResource("4_2bnke")]
+offset_left = 1285.0
+offset_top = 930.0
+offset_right = 0.0
+offset_bottom = 30.0
+script = ExtResource("7_v0y26")
+carro = NodePath("../../carro")
 
 [node name="Label1" type="Label" parent="CanvasLayer"]
 offset_right = 40.0
