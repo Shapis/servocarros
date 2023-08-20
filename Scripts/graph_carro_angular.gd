@@ -30,7 +30,7 @@ func _ready():
 	
 	# Let's add values to our functions
 	f1 = Function.new(
-		[0], [0], "Roda Esquerda", # This will create a function with x and y values taken by the Arrays 
+		[0], [0], "Vel angular", # This will create a function with x and y values taken by the Arrays 
 						# we have created previously. This function will also be named "Pressure"
 						# as it contains 'pressure' values.
 						# If set, the name of a function will be used both in the Legend
@@ -49,16 +49,19 @@ func _ready():
 
 
 var tempoTotal: float = 0
+var divisor: int = 0
 
 func _process(delta: float):
 	# This function updates the values of a function and then updates the plot
-	tempoTotal += delta*1000
-		
+	tempoTotal += delta*1000*carro.EscalaGraph
+	divisor += 1	
 	
+	if divisor == carro.EscalaGraph:
 	# we can use the `Function.add_point(x, y)` method to update a function
-	f1.add_point(tempoTotal, carro._diffVelocity)
-	f3.add_point(tempoTotal, 1.05*(carro._velocidadeMaxima*2)/carro._distanciaEntreRodas)
-	f4.add_point(tempoTotal,  -1.05*(carro._velocidadeMaxima*2)/carro._distanciaEntreRodas)
+		f1.add_point(tempoTotal, carro._diffVelocity)
+		f3.add_point(tempoTotal, 1.05*(carro._velocidadeMaxima*2)/carro._distanciaEntreRodas)
+		f4.add_point(tempoTotal,  -1.05*(carro._velocidadeMaxima*2)/carro._distanciaEntreRodas)
+		divisor = 0
 	chart.queue_redraw() # This will force the Chart to be updated
 
 

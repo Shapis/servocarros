@@ -49,19 +49,21 @@ func _ready():
 
 
 var tempoTotal: float = 0
+var divisor: int = 0
 
 func _process(delta: float):
 	# This function updates the values of a function and then updates the plot
-	tempoTotal += delta*1000
-		
+	tempoTotal += delta*1000*carro.EscalaGraph
+	divisor += 1	
 	
 	# we can use the `Function.add_point(x, y)` method to update a function
-	f1.add_point(tempoTotal, carro._rodaEsquerdaVelocidade)
-	f2.add_point(tempoTotal,  carro._rodaDireitaVelocidade)
-	f3.add_point(tempoTotal, carro._velocidadeMaxima*1.1)
-	f4.add_point(tempoTotal,  - carro._velocidadeMaxima*1.1)
+	if divisor == carro.EscalaGraph:
+		f1.add_point(tempoTotal, carro._rodaEsquerdaVelocidade)
+		f2.add_point(tempoTotal,  carro._rodaDireitaVelocidade)
+		f3.add_point(tempoTotal, carro._velocidadeMaxima*1.1)
+		f4.add_point(tempoTotal,  - carro._velocidadeMaxima*1.1)
+		divisor = 0
 	chart.queue_redraw() # This will force the Chart to be updated
-
 
 func _on_CheckButton_pressed():
 	set_process(not is_processing())

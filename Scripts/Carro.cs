@@ -48,6 +48,9 @@ public partial class Carro : Node2D, ICarroDiagnosticos
     public float TempoDeAceleracao { get; set; } = 500; // milisegundos
 
     [Export]
+    public float EscalaGraph { get; set; } = 1f;
+
+    [Export]
     public Label[] TextosParaTeste;
 
     [Export]

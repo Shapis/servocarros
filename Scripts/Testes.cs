@@ -178,11 +178,11 @@ public class Testes
         _Ts = _carro.TempoDeAceleracao / 1000f;
         _carro.AutoPilot = true;
 
-        if (_carro.ElapsedTime >= 3 + _Ts * 20)
+        if (_carro.ElapsedTime >= 3 + _Ts * 10)
         {
             _carro.ElapsedTime = 3;
         }
-        else if (_carro.ElapsedTime >= 3 + _Ts * 10)
+        else if (_carro.ElapsedTime >= 3 + _Ts * 5)
         {
             _carro._RodaDireita.Impulso = -1;
             _carro._RodaEsquerda.Impulso = 1;
