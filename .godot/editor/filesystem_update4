@@ -1,5 +1,4 @@
 res://main.tscn
-res://Scripts/graph_carro_angular.gd
 res://Node2D.cs
 res://Scripts/Carro.cs
 res://Scripts/Inputs.cs

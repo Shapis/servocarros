@@ -6,12 +6,12 @@ public partial class Carro : Node2D, ICarroDiagnosticos
     public event EventHandler<DiagnosticosInfo> OnCarroUpdateEvent;
 
     #region Inputs
-    Roda _RodaEsquerda = new Roda();
-    Roda _RodaDireita = new Roda();
+    public Roda _RodaEsquerda = new Roda();
+    public Roda _RodaDireita = new Roda();
 
     private void OnImpulso(int left, int right)
     {
-        if (!_autopilot)
+        if (!AutoPilot)
         {
             _RodaEsquerda.Impulso = left;
             _RodaDireita.Impulso = right;
@@ -21,32 +21,44 @@ public partial class Carro : Node2D, ICarroDiagnosticos
 
     #region Exports
     [Export]
-    private float _diametroDaRoda = 1;
+    public Label[] TextosParaTeste;
 
     [Export]
-    private float _distanciaEntreRodas = 200;
+    public Control[] Charts;
 
     [Export]
-    private float _pesoDoCarro = 1000; // Gramas
+    private float _diametroDaRoda = 50f;
 
     [Export]
-    private float _velocidadeMaxima = 1; // mm/s
+    public float _distanciaEntreRodas = 200;
 
     [Export]
-    private float _tempoDeAceleracao = 500; // milisegundos
+    private float _pesoDoCarro = 200; // Gramas
+
+    [Export]
+    public float _velocidadeMaxima = 628.318f; // mm/s
+
+    [Export]
+    public float TempoDeAceleracao { get; set; } = 500; // milisegundos
     #endregion
 
-    private bool _autopilot = false;
-    private float _sumVelocity = 0;
-    private float _diffVelocity = 0;
-    private double _timeElapsed = 0;
+    public bool AutoPilot { get; set; } = false;
+    public float _sumVelocity = 0;
+    public float _diffVelocity = 0;
+    public double ElapsedTime { get; set; } = 0;
     private double _deltaTime = 0;
-    private float _rodaEsquerdaVelocidade = 0;
-    private float _rodaDireitaVelocidade = 0;
+    public float _rodaEsquerdaVelocidade = 0;
+    public float _rodaDireitaVelocidade = 0;
+    Testes _testador;
+
+    //private Testes _testador = new Testes(this);
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        Position = new Vector2(-4000, -1600);
+        _testador = new Testes(this);
+        _velocidadeMaxima = _velocidadeMaxima * (200f / _pesoDoCarro) * (_diametroDaRoda / 50f);
         GetNode<Sprite2D>("roda_esquerda").Position = new Vector2(0, -_distanciaEntreRodas / 2);
         GetNode<Sprite2D>("roda_direita").Position = new Vector2(0, _distanciaEntreRodas / 2);
     }
@@ -70,11 +82,11 @@ public partial class Carro : Node2D, ICarroDiagnosticos
             Position = new Vector2(Position.X, -4000);
         }
         _deltaTime = delta;
-        _timeElapsed += delta;
+        ElapsedTime += delta;
         // _RodaDireita.RadialSpeed = -100f * 2f * (float)Math.PI;
         // _RodaEsquerda.RadialSpeed = 100f * 2f * (float)Math.PI;
-        _RodaDireita.Update((float)delta, _pesoDoCarro, _velocidadeMaxima, _tempoDeAceleracao);
-        _RodaEsquerda.Update((float)delta, _pesoDoCarro, _velocidadeMaxima, _tempoDeAceleracao);
+        _RodaDireita.Update((float)delta, _pesoDoCarro, _velocidadeMaxima, TempoDeAceleracao);
+        _RodaEsquerda.Update((float)delta, _pesoDoCarro, _velocidadeMaxima, TempoDeAceleracao);
         _rodaEsquerdaVelocidade = _RodaEsquerda.RadialSpeed;
         _rodaDireitaVelocidade = _RodaDireita.RadialSpeed;
         // _RodaEsquerda.Speed = 100f * (float)Math.PI * 2f;
@@ -95,7 +107,7 @@ public partial class Carro : Node2D, ICarroDiagnosticos
         if (Rotation >= 2f * (float)Math.PI)
         {
             Rotation -= 2f * (float)Math.PI;
-            GD.Print(_timeElapsed);
+            GD.Print(ElapsedTime);
         }
 
         // GD.Print("Posicao: " + Position);
@@ -112,8 +124,17 @@ public partial class Carro : Node2D, ICarroDiagnosticos
                 Posicao = Position,
                 VelocidadeRadial = new Vector2(_RodaEsquerda.RadialSpeed, _RodaDireita.RadialSpeed),
                 VelocidadeAngular = _diffVelocity,
+                Testador = _testador,
             }
         );
+    }
+
+    public sealed override void _Process(double delta)
+    {
+        _testador.VelocidadeCentral();
+        //_testador.MeiaRotacao();
+        //_testador.RotacaoMaxima();
+        //_testador.RotacaoMaximaCiclica();
     }
 
     public void OnCarroUpdate(object sender, DiagnosticosInfo e)

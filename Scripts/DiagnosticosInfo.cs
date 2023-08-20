@@ -13,4 +13,6 @@ public class DiagnosticosInfo
     public float TempoDeAceleracao { get; set; }
     public float PesoDoCarro { get; set; }
     public float DeltaTime { get; set; }
+    public Testes Testador { get; set; }
+    public string[] TesteAtual { get; set; }
 }

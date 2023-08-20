@@ -13,10 +13,11 @@
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.2, 0.2)
 
-[node name="carro" type="Node2D" parent="."]
+[node name="carro" type="Node2D" parent="." node_paths=PackedStringArray("TextosParaTeste", "Charts")]
 script = ExtResource("1_lrc4o")
-_diametroDaRoda = 2.0
-_velocidadeMaxima = 628.318
+TextosParaTeste = [NodePath("../CanvasLayer/Label12"), NodePath("../CanvasLayer/Label13"), NodePath("../CanvasLayer/Label14"), NodePath("../CanvasLayer/Label15"), NodePath("../CanvasLayer/Label16"), NodePath("../CanvasLayer/Label17"), NodePath("../CanvasLayer/Label18")]
+Charts = [NodePath("../CanvasLayer/Rodas"), NodePath("../CanvasLayer/Carro")]
+TempoDeAceleracao = 250.0
 
 [node name="roda_esquerda" type="Sprite2D" parent="carro"]
 position = Vector2(0, -100)
