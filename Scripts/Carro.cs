@@ -19,12 +19,18 @@ public partial class Carro : Node2D, ICarroDiagnosticos
     }
     #endregion
 
+    public enum TipoDeTeste
+    {
+        Nenhum,
+        VelocidadeCentral,
+        MeiaRotacao,
+        RotacaoMaxima,
+        RotacaoMaximaCiclica,
+    }
+
     #region Exports
     [Export]
-    public Label[] TextosParaTeste;
-
-    [Export]
-    public Control[] Charts;
+    public TipoDeTeste TesteSelecionado = TipoDeTeste.Nenhum;
 
     [Export]
     private float _diametroDaRoda = 50f;
@@ -40,6 +46,13 @@ public partial class Carro : Node2D, ICarroDiagnosticos
 
     [Export]
     public float TempoDeAceleracao { get; set; } = 500; // milisegundos
+
+    [Export]
+    public Label[] TextosParaTeste;
+
+    [Export]
+    public Control[] Charts;
+
     #endregion
 
     public bool AutoPilot { get; set; } = false;
@@ -131,10 +144,23 @@ public partial class Carro : Node2D, ICarroDiagnosticos
 
     public sealed override void _Process(double delta)
     {
-        //_testador.VelocidadeCentral();
-        //_testador.MeiaRotacao();
-        //_testador.RotacaoMaxima();
-        //_testador.RotacaoMaximaCiclica();
+        switch (TesteSelecionado)
+        {
+            case TipoDeTeste.VelocidadeCentral:
+                _testador.VelocidadeCentral();
+                break;
+            case TipoDeTeste.MeiaRotacao:
+                _testador.MeiaRotacao();
+                break;
+            case TipoDeTeste.RotacaoMaxima:
+                _testador.RotacaoMaxima();
+                break;
+            case TipoDeTeste.RotacaoMaximaCiclica:
+                _testador.RotacaoMaximaCiclica();
+                break;
+            default:
+                break;
+        }
     }
 
     public void OnCarroUpdate(object sender, DiagnosticosInfo e)
