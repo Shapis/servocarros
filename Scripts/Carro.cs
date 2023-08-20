@@ -131,7 +131,7 @@ public partial class Carro : Node2D, ICarroDiagnosticos
 
     public sealed override void _Process(double delta)
     {
-        _testador.VelocidadeCentral();
+        //_testador.VelocidadeCentral();
         //_testador.MeiaRotacao();
         //_testador.RotacaoMaxima();
         //_testador.RotacaoMaximaCiclica();
