@@ -1,6 +1,1 @@
 res://main.tscn
-res://Scripts/graph_rodas.gd
-res://Node2D.cs
-res://Scripts/Carro.cs
-res://Scripts/Inputs.cs
-res://Scripts/UI.cs
