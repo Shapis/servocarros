@@ -26,6 +26,7 @@ public partial class Carro : Node2D, ICarroDiagnosticos
         MeiaRotacao,
         RotacaoMaxima,
         RotacaoMaximaCiclica,
+        Rotacao,
     }
 
     #region Exports
@@ -161,7 +162,11 @@ public partial class Carro : Node2D, ICarroDiagnosticos
             case TipoDeTeste.RotacaoMaximaCiclica:
                 _testador.RotacaoMaximaCiclica();
                 break;
+            case TipoDeTeste.Rotacao:
+                _testador.Rotacao();
+                break;
             default:
+                GD.Print(Position);
                 break;
         }
     }

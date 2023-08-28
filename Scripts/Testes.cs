@@ -25,6 +25,7 @@ public class Testes
     // Teste de velocidade, este teste inicia ambas rodas com degrau ligado, e analisa sua velocidade apos 1 Ts, e 5 Ts, esta deve ser respectivamente 63.2% da velocidade maxima, e 99.3% da velocidade maxima
     public void VelocidadeCentral()
     {
+        GD.Print(_carro.Position);
         _carro.TextosParaTeste[0].Text = "";
         _carro.TextosParaTeste[1].Text = "Teste de velocidade";
         _carro.TextosParaTeste[2].Text = "";
@@ -200,6 +201,40 @@ public class Testes
         }
         else if (_carro.ElapsedTime >= 3)
         {
+            _carro._RodaDireita.Impulso = 1;
+            _carro._RodaEsquerda.Impulso = -1;
+        }
+    }
+
+    float ultimaRotacaoTempo = 0;
+    float ultimaRotMax = 0;
+
+    public void Rotacao()
+    {
+        _carro.AutoPilot = true; // Usado para desabilitar o controle pelo teclado
+
+        _carro.TextosParaTeste[0].Text = "";
+        _carro.TextosParaTeste[1].Text = "Teste de rotacao maxima";
+        _carro.TextosParaTeste[2].Text = "";
+        _carro.TextosParaTeste[3].Text = $"Pos: {(_carro.Position - _posicaoInicial)}";
+        _carro.TextosParaTeste[4].Text = "";
+        _carro.TextosParaTeste[5].Text = $"T ultima rot {_carro.ElapsedTime - ultimaRotacaoTempo}s";
+        _carro.TextosParaTeste[6].Text = $"{ultimaRotMax}";
+
+        if (_carro.ElapsedTime >= 3)
+        {
+            //GD.Print(_carro.Rotation);
+
+            if (Math.Abs(_carro.Rotation) >= 2f * (float)Math.PI)
+            {
+                _carro.Rotation = 0;
+                ultimaRotMax = (float)_carro.ElapsedTime - ultimaRotacaoTempo;
+                ultimaRotacaoTempo = (float)_carro.ElapsedTime;
+            }
+            if (_posicaoInicial == null)
+            {
+                _posicaoInicial = _carro.Position;
+            }
             _carro._RodaDireita.Impulso = 1;
             _carro._RodaEsquerda.Impulso = -1;
         }

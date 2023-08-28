@@ -53,7 +53,7 @@ var divisor: int = 0
 
 func _process(delta: float):
 	# This function updates the values of a function and then updates the plot
-	tempoTotal += delta*1000*carro.EscalaGraph
+	tempoTotal += delta*1000
 	divisor += 1	
 	
 	# we can use the `Function.add_point(x, y)` method to update a function
