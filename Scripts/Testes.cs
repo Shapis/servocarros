@@ -209,7 +209,7 @@ public class Testes
     float ultimaRotacaoTempo = 0;
     float ultimaRotMax = 0;
 
-    public void Rotacao()
+    public void RotacaoAntiH()
     {
         _carro.AutoPilot = true; // Usado para desabilitar o controle pelo teclado
 
@@ -218,13 +218,12 @@ public class Testes
         _carro.TextosParaTeste[2].Text = "";
         _carro.TextosParaTeste[3].Text = $"Pos: {(_carro.Position - _posicaoInicial)}";
         _carro.TextosParaTeste[4].Text = "";
-        _carro.TextosParaTeste[5].Text = $"T ultima rot {_carro.ElapsedTime - ultimaRotacaoTempo}s";
-        _carro.TextosParaTeste[6].Text = $"{ultimaRotMax}";
+        _carro.TextosParaTeste[5].Text =
+            $"T: {Math.Round(_carro.ElapsedTime - ultimaRotacaoTempo, 2)}s";
+        _carro.TextosParaTeste[6].Text = $"T: {Math.Round(ultimaRotMax, 2)}s";
 
         if (_carro.ElapsedTime >= 3)
         {
-            //GD.Print(_carro.Rotation);
-
             if (Math.Abs(_carro.Rotation) >= 2f * (float)Math.PI)
             {
                 _carro.Rotation = 0;
@@ -238,5 +237,332 @@ public class Testes
             _carro._RodaDireita.Impulso = 1;
             _carro._RodaEsquerda.Impulso = -1;
         }
+    }
+
+    public void RotacaoH()
+    {
+        _carro.AutoPilot = true; // Usado para desabilitar o controle pelo teclado
+
+        _carro.TextosParaTeste[0].Text = "";
+        _carro.TextosParaTeste[1].Text = "Teste de rotacao maxima";
+        _carro.TextosParaTeste[2].Text = "";
+        _carro.TextosParaTeste[3].Text = $"Pos: {(_carro.Position - _posicaoInicial)}";
+        _carro.TextosParaTeste[4].Text = "";
+        _carro.TextosParaTeste[5].Text =
+            $"T: {Math.Round(_carro.ElapsedTime - ultimaRotacaoTempo, 2)}s";
+        _carro.TextosParaTeste[6].Text = $"T: {Math.Round(ultimaRotMax, 2)}s";
+
+        if (_carro.ElapsedTime >= 3)
+        {
+            if (Math.Abs(_carro.Rotation) >= 2f * (float)Math.PI)
+            {
+                _carro.Rotation = 0;
+                ultimaRotMax = (float)_carro.ElapsedTime - ultimaRotacaoTempo;
+                ultimaRotacaoTempo = (float)_carro.ElapsedTime;
+            }
+            if (_posicaoInicial == null)
+            {
+                _posicaoInicial = _carro.Position;
+            }
+            _carro._RodaDireita.Impulso = -1;
+            _carro._RodaEsquerda.Impulso = 1;
+        }
+    }
+
+    int tempoInt = 0;
+    Vector2? ultimaPosicao = new Vector2();
+    Vector2? posicaoAtual = new Vector2();
+    float distanciaPercorrida = 0;
+
+    public void VCentralFrente()
+    {
+        _carro.AutoPilot = true; // Usado para desabilitar o controle pelo teclado
+
+        _carro.TextosParaTeste[0].Text = "";
+        _carro.TextosParaTeste[1].Text = "Teste de velocidade";
+        _carro.TextosParaTeste[2].Text = "";
+        _carro.TextosParaTeste[3].Text = $"Pos: {(_carro.Position - _posicaoInicial)}";
+        _carro.TextosParaTeste[4].Text = "";
+        _carro.TextosParaTeste[5].Text = $"T: {tempoInt}s";
+        _carro.TextosParaTeste[6].Text = $"Dist: {distanciaPercorrida}mm";
+        if (_posicaoInicial == null)
+        {
+            _posicaoInicial = _carro.Position;
+        }
+        posicaoAtual = _carro.Position - _posicaoInicial;
+
+        if (_carro.ElapsedTime >= tempoInt)
+        {
+            distanciaPercorrida = (float)
+                Math.Sqrt(
+                    (float)Math.Pow(posicaoAtual.Value.X - ultimaPosicao.Value.X, 2)
+                        + (float)Math.Pow(posicaoAtual.Value.Y - ultimaPosicao.Value.Y, 2)
+                );
+            distanciaPercorrida = (float)Math.Round(distanciaPercorrida, 2);
+            ultimaPosicao = posicaoAtual;
+        }
+
+        if (_carro.ElapsedTime >= 3)
+        {
+            _carro._RodaDireita.Impulso = 1;
+            _carro._RodaEsquerda.Impulso = 1;
+        }
+        tempoInt = (int)Math.Ceiling(_carro.ElapsedTime);
+    }
+
+    public void VCentralTras()
+    {
+        _carro.AutoPilot = true; // Usado para desabilitar o controle pelo teclado
+
+        _carro.TextosParaTeste[0].Text = "";
+        _carro.TextosParaTeste[1].Text = "Teste de velocidade";
+        _carro.TextosParaTeste[2].Text = "";
+        _carro.TextosParaTeste[3].Text = $"Pos: {(_carro.Position - _posicaoInicial)}";
+        _carro.TextosParaTeste[4].Text = "";
+        _carro.TextosParaTeste[5].Text = $"T: {tempoInt}s";
+        _carro.TextosParaTeste[6].Text = $"Dist: {distanciaPercorrida}mm";
+        if (_posicaoInicial == null)
+        {
+            _posicaoInicial = _carro.Position;
+        }
+        posicaoAtual = _carro.Position - _posicaoInicial;
+
+        if (_carro.ElapsedTime >= tempoInt)
+        {
+            distanciaPercorrida = (float)
+                Math.Sqrt(
+                    (float)Math.Pow(posicaoAtual.Value.X - ultimaPosicao.Value.X, 2)
+                        + (float)Math.Pow(posicaoAtual.Value.Y - ultimaPosicao.Value.Y, 2)
+                );
+            distanciaPercorrida = (float)Math.Round(distanciaPercorrida, 2);
+            ultimaPosicao = posicaoAtual;
+        }
+
+        if (_carro.ElapsedTime >= 3)
+        {
+            _carro._RodaDireita.Impulso = -1;
+            _carro._RodaEsquerda.Impulso = -1;
+        }
+        tempoInt = (int)Math.Ceiling(_carro.ElapsedTime);
+    }
+
+    public void VCentralMeiaRotacaoDP()
+    {
+        if (_posicaoInicial == null)
+        {
+            _posicaoInicial = _carro.Position;
+        }
+        posicaoAtual = _carro.Position - _posicaoInicial;
+        _carro.AutoPilot = true; // Usado para desabilitar o controle pelo teclado
+
+        _carro.TextosParaTeste[0].Text = "";
+        _carro.TextosParaTeste[1].Text = "Teste de meia rotacao";
+        _carro.TextosParaTeste[2].Text = "";
+        _carro.TextosParaTeste[3].Text = $"Pos X: {(Math.Round(posicaoAtual.Value.X, 0))}";
+        _carro.TextosParaTeste[4].Text = $"Pos Y: {(Math.Round(posicaoAtual.Value.Y, 0))}";
+        _carro.TextosParaTeste[5].Text =
+            $"T: {Math.Round(_carro.ElapsedTime - ultimaRotacaoTempo, 2)}s";
+        _carro.TextosParaTeste[6].Text = $"T: {Math.Round(ultimaRotMax, 2)}s";
+
+        if (_carro.ElapsedTime >= tempoInt)
+        {
+            distanciaPercorrida = (float)
+                Math.Sqrt(
+                    (float)Math.Pow(posicaoAtual.Value.X - ultimaPosicao.Value.X, 2)
+                        + (float)Math.Pow(posicaoAtual.Value.Y - ultimaPosicao.Value.Y, 2)
+                );
+            distanciaPercorrida = (float)Math.Round(distanciaPercorrida, 2);
+            ultimaPosicao = posicaoAtual;
+        }
+
+        if (_carro.ElapsedTime >= 3)
+        {
+            if (Math.Abs(_carro.Rotation) >= 2f * (float)Math.PI)
+            {
+                _carro.Rotation = 0;
+                ultimaRotMax = (float)_carro.ElapsedTime - ultimaRotacaoTempo;
+                ultimaRotacaoTempo = (float)_carro.ElapsedTime;
+            }
+
+            _carro._RodaDireita.Impulso = 1;
+            _carro._RodaEsquerda.Impulso = 0;
+        }
+        tempoInt = (int)Math.Ceiling(_carro.ElapsedTime);
+    }
+
+    public void VCentralMeiaRotacaoEP()
+    {
+        if (_posicaoInicial == null)
+        {
+            _posicaoInicial = _carro.Position;
+        }
+        posicaoAtual = _carro.Position - _posicaoInicial;
+        _carro.AutoPilot = true; // Usado para desabilitar o controle pelo teclado
+
+        _carro.TextosParaTeste[0].Text = "";
+        _carro.TextosParaTeste[1].Text = "Teste de meia rotacao";
+        _carro.TextosParaTeste[2].Text = "";
+        _carro.TextosParaTeste[3].Text = $"Pos X: {(Math.Round(posicaoAtual.Value.X, 0))}";
+        _carro.TextosParaTeste[4].Text = $"Pos Y: {(Math.Round(posicaoAtual.Value.Y, 0))}";
+        _carro.TextosParaTeste[5].Text =
+            $"T: {Math.Round(_carro.ElapsedTime - ultimaRotacaoTempo, 2)}s";
+        _carro.TextosParaTeste[6].Text = $"T: {Math.Round(ultimaRotMax, 2)}s";
+
+        if (_carro.ElapsedTime >= tempoInt)
+        {
+            distanciaPercorrida = (float)
+                Math.Sqrt(
+                    (float)Math.Pow(posicaoAtual.Value.X - ultimaPosicao.Value.X, 2)
+                        + (float)Math.Pow(posicaoAtual.Value.Y - ultimaPosicao.Value.Y, 2)
+                );
+            distanciaPercorrida = (float)Math.Round(distanciaPercorrida, 2);
+            ultimaPosicao = posicaoAtual;
+        }
+
+        if (_carro.ElapsedTime >= 3)
+        {
+            if (Math.Abs(_carro.Rotation) >= 2f * (float)Math.PI)
+            {
+                _carro.Rotation = 0;
+                ultimaRotMax = (float)_carro.ElapsedTime - ultimaRotacaoTempo;
+                ultimaRotacaoTempo = (float)_carro.ElapsedTime;
+            }
+
+            _carro._RodaDireita.Impulso = 0;
+            _carro._RodaEsquerda.Impulso = 1;
+        }
+        tempoInt = (int)Math.Ceiling(_carro.ElapsedTime);
+    }
+
+    public void VCentralMeiaRotacaoEN()
+    {
+        if (_posicaoInicial == null)
+        {
+            _posicaoInicial = _carro.Position;
+        }
+        posicaoAtual = _carro.Position - _posicaoInicial;
+        _carro.AutoPilot = true; // Usado para desabilitar o controle pelo teclado
+
+        _carro.TextosParaTeste[0].Text = "";
+        _carro.TextosParaTeste[1].Text = "Teste de meia rotacao";
+        _carro.TextosParaTeste[2].Text = "";
+        _carro.TextosParaTeste[3].Text = $"Pos X: {(Math.Round(posicaoAtual.Value.X, 0))}";
+        _carro.TextosParaTeste[4].Text = $"Pos Y: {(Math.Round(posicaoAtual.Value.Y, 0))}";
+        _carro.TextosParaTeste[5].Text =
+            $"T: {Math.Round(_carro.ElapsedTime - ultimaRotacaoTempo, 2)}s";
+        _carro.TextosParaTeste[6].Text = $"T: {Math.Round(ultimaRotMax, 2)}s";
+
+        if (_carro.ElapsedTime >= tempoInt)
+        {
+            distanciaPercorrida = (float)
+                Math.Sqrt(
+                    (float)Math.Pow(posicaoAtual.Value.X - ultimaPosicao.Value.X, 2)
+                        + (float)Math.Pow(posicaoAtual.Value.Y - ultimaPosicao.Value.Y, 2)
+                );
+            distanciaPercorrida = (float)Math.Round(distanciaPercorrida, 2);
+            ultimaPosicao = posicaoAtual;
+        }
+
+        if (_carro.ElapsedTime >= 3)
+        {
+            if (Math.Abs(_carro.Rotation) >= 2f * (float)Math.PI)
+            {
+                _carro.Rotation = 0;
+                ultimaRotMax = (float)_carro.ElapsedTime - ultimaRotacaoTempo;
+                ultimaRotacaoTempo = (float)_carro.ElapsedTime;
+            }
+
+            _carro._RodaDireita.Impulso = 0;
+            _carro._RodaEsquerda.Impulso = -1;
+        }
+        tempoInt = (int)Math.Ceiling(_carro.ElapsedTime);
+    }
+
+    public void VCentralMeiaRotacaoDN()
+    {
+        if (_posicaoInicial == null)
+        {
+            _posicaoInicial = _carro.Position;
+        }
+        posicaoAtual = _carro.Position - _posicaoInicial;
+        _carro.AutoPilot = true; // Usado para desabilitar o controle pelo teclado
+
+        _carro.TextosParaTeste[0].Text = "";
+        _carro.TextosParaTeste[1].Text = "Teste de meia rotacao";
+        _carro.TextosParaTeste[2].Text = "";
+        _carro.TextosParaTeste[3].Text = $"Pos X: {(Math.Round(posicaoAtual.Value.X, 0))}";
+        _carro.TextosParaTeste[4].Text = $"Pos Y: {(Math.Round(posicaoAtual.Value.Y, 0))}";
+        _carro.TextosParaTeste[5].Text =
+            $"T: {Math.Round(_carro.ElapsedTime - ultimaRotacaoTempo, 2)}s";
+        _carro.TextosParaTeste[6].Text = $"T: {Math.Round(ultimaRotMax, 2)}s";
+
+        if (_carro.ElapsedTime >= tempoInt)
+        {
+            distanciaPercorrida = (float)
+                Math.Sqrt(
+                    (float)Math.Pow(posicaoAtual.Value.X - ultimaPosicao.Value.X, 2)
+                        + (float)Math.Pow(posicaoAtual.Value.Y - ultimaPosicao.Value.Y, 2)
+                );
+            distanciaPercorrida = (float)Math.Round(distanciaPercorrida, 2);
+            ultimaPosicao = posicaoAtual;
+        }
+
+        if (_carro.ElapsedTime >= 3)
+        {
+            if (Math.Abs(_carro.Rotation) >= 2f * (float)Math.PI)
+            {
+                _carro.Rotation = 0;
+                ultimaRotMax = (float)_carro.ElapsedTime - ultimaRotacaoTempo;
+                ultimaRotacaoTempo = (float)_carro.ElapsedTime;
+            }
+
+            _carro._RodaDireita.Impulso = -1;
+            _carro._RodaEsquerda.Impulso = 0;
+        }
+        tempoInt = (int)Math.Ceiling(_carro.ElapsedTime);
+    }
+
+    public void VCentralMeiaRotacaoLivre()
+    {
+        if (_posicaoInicial == null)
+        {
+            _posicaoInicial = _carro.Position;
+        }
+        posicaoAtual = _carro.Position - _posicaoInicial;
+        // _carro.AutoPilot = true; // Usado para desabilitar o controle pelo teclado
+
+        _carro.TextosParaTeste[0].Text = "";
+        _carro.TextosParaTeste[1].Text = "Teste de meia rotacao";
+        _carro.TextosParaTeste[2].Text = "";
+        _carro.TextosParaTeste[3].Text = $"Pos X: {(Math.Round(posicaoAtual.Value.X, 0))}";
+        _carro.TextosParaTeste[4].Text = $"Pos Y: {(Math.Round(posicaoAtual.Value.Y, 0))}";
+        _carro.TextosParaTeste[5].Text =
+            $"T: {Math.Round(_carro.ElapsedTime - ultimaRotacaoTempo, 2)}s";
+        _carro.TextosParaTeste[6].Text = $"T: {Math.Round(ultimaRotMax, 2)}s";
+
+        if (_carro.ElapsedTime >= tempoInt)
+        {
+            distanciaPercorrida = (float)
+                Math.Sqrt(
+                    (float)Math.Pow(posicaoAtual.Value.X - ultimaPosicao.Value.X, 2)
+                        + (float)Math.Pow(posicaoAtual.Value.Y - ultimaPosicao.Value.Y, 2)
+                );
+            distanciaPercorrida = (float)Math.Round(distanciaPercorrida, 2);
+            ultimaPosicao = posicaoAtual;
+        }
+
+        if (_carro.ElapsedTime >= 3)
+        {
+            if (Math.Abs(_carro.Rotation) >= 2f * (float)Math.PI)
+            {
+                _carro.Rotation = 0;
+                ultimaRotMax = (float)_carro.ElapsedTime - ultimaRotacaoTempo;
+                ultimaRotacaoTempo = (float)_carro.ElapsedTime;
+            }
+
+            // _carro._RodaDireita.Impulso = -1;
+            // _carro._RodaEsquerda.Impulso = 0;
+        }
+        tempoInt = (int)Math.Ceiling(_carro.ElapsedTime);
     }
 }

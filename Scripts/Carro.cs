@@ -26,7 +26,15 @@ public partial class Carro : Node2D, ICarroDiagnosticos
         MeiaRotacao,
         RotacaoMaxima,
         RotacaoMaximaCiclica,
-        Rotacao,
+        RotacaoAntiH,
+        RotacaoH,
+        VCentralFrente,
+        VCentralTras,
+        VCentralMeiaRotacaoDP,
+        VCentralMeiaRotacaoDN,
+        VCentralMeiaRotacaoEP,
+        VCentralMeiaRotacaoEN,
+        VCentralMeiaRotacaoLivre
     }
 
     #region Exports
@@ -121,11 +129,11 @@ public partial class Carro : Node2D, ICarroDiagnosticos
                 _sumVelocity * (float)Math.Sin(Rotation)
             ) * (float)delta;
 
-        if (Rotation >= 2f * (float)Math.PI)
-        {
-            Rotation -= 2f * (float)Math.PI;
-            GD.Print(ElapsedTime);
-        }
+        // if (Rotation >= 2f * (float)Math.PI)
+        // {
+        //     Rotation -= 2f * (float)Math.PI;
+        //     GD.Print(ElapsedTime);
+        // }
 
         // GD.Print("Posicao: " + Position);
         // GD.Print(Position);
@@ -162,11 +170,35 @@ public partial class Carro : Node2D, ICarroDiagnosticos
             case TipoDeTeste.RotacaoMaximaCiclica:
                 _testador.RotacaoMaximaCiclica();
                 break;
-            case TipoDeTeste.Rotacao:
-                _testador.Rotacao();
+            case TipoDeTeste.RotacaoAntiH:
+                _testador.RotacaoAntiH();
                 break;
             default:
                 GD.Print(Position);
+                break;
+            case TipoDeTeste.RotacaoH:
+                _testador.RotacaoH();
+                break;
+            case TipoDeTeste.VCentralFrente:
+                _testador.VCentralFrente();
+                break;
+            case TipoDeTeste.VCentralTras:
+                _testador.VCentralTras();
+                break;
+            case TipoDeTeste.VCentralMeiaRotacaoDP:
+                _testador.VCentralMeiaRotacaoDP();
+                break;
+            case TipoDeTeste.VCentralMeiaRotacaoDN:
+                _testador.VCentralMeiaRotacaoDN();
+                break;
+            case TipoDeTeste.VCentralMeiaRotacaoEP:
+                _testador.VCentralMeiaRotacaoEP();
+                break;
+            case TipoDeTeste.VCentralMeiaRotacaoEN:
+                _testador.VCentralMeiaRotacaoEN();
+                break;
+            case TipoDeTeste.VCentralMeiaRotacaoLivre:
+                _testador.VCentralMeiaRotacaoLivre();
                 break;
         }
     }
