@@ -276,19 +276,21 @@ public class Testes
 
     public void VCentralFrente()
     {
+        if (_posicaoInicial == null)
+        {
+            _posicaoInicial = _carro.Position;
+        }
+        posicaoAtual = _carro.Position - _posicaoInicial;
         _carro.AutoPilot = true; // Usado para desabilitar o controle pelo teclado
 
         _carro.TextosParaTeste[0].Text = "";
         _carro.TextosParaTeste[1].Text = "Teste de velocidade";
         _carro.TextosParaTeste[2].Text = "";
-        _carro.TextosParaTeste[3].Text = $"Pos: {(_carro.Position - _posicaoInicial)}";
-        _carro.TextosParaTeste[4].Text = "";
+        _carro.TextosParaTeste[3].Text = $"Pos X: {(Math.Round(posicaoAtual.Value.X, 0))}";
+        _carro.TextosParaTeste[4].Text = $"Pos Y: {(Math.Round(posicaoAtual.Value.Y, 0))}";
         _carro.TextosParaTeste[5].Text = $"T: {tempoInt}s";
         _carro.TextosParaTeste[6].Text = $"Dist: {distanciaPercorrida}mm";
-        if (_posicaoInicial == null)
-        {
-            _posicaoInicial = _carro.Position;
-        }
+
         posicaoAtual = _carro.Position - _posicaoInicial;
 
         if (_carro.ElapsedTime >= tempoInt)
@@ -312,19 +314,21 @@ public class Testes
 
     public void VCentralTras()
     {
+        if (_posicaoInicial == null)
+        {
+            _posicaoInicial = _carro.Position;
+        }
+        posicaoAtual = _carro.Position - _posicaoInicial;
         _carro.AutoPilot = true; // Usado para desabilitar o controle pelo teclado
 
         _carro.TextosParaTeste[0].Text = "";
         _carro.TextosParaTeste[1].Text = "Teste de velocidade";
         _carro.TextosParaTeste[2].Text = "";
-        _carro.TextosParaTeste[3].Text = $"Pos: {(_carro.Position - _posicaoInicial)}";
-        _carro.TextosParaTeste[4].Text = "";
+        _carro.TextosParaTeste[3].Text = $"Pos X: {(Math.Round(posicaoAtual.Value.X, 0))}";
+        _carro.TextosParaTeste[4].Text = $"Pos Y: {(Math.Round(posicaoAtual.Value.Y, 0))}";
         _carro.TextosParaTeste[5].Text = $"T: {tempoInt}s";
         _carro.TextosParaTeste[6].Text = $"Dist: {distanciaPercorrida}mm";
-        if (_posicaoInicial == null)
-        {
-            _posicaoInicial = _carro.Position;
-        }
+
         posicaoAtual = _carro.Position - _posicaoInicial;
 
         if (_carro.ElapsedTime >= tempoInt)
